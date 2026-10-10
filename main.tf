@@ -15,9 +15,9 @@ data "aws_ami" "app_ami" {
   owners = ["amazon"] # Bitnami
 }
 
-  provider "aws" {
-    region = "us-east-1" # use your region
-  }  ## force region
+  ##provider "aws" {
+  ##  region = "us-east-1" # use your region
+  ##}  ## force region
 
 resource "aws_instance" "web" {
   ami           = data.aws_ami.app_ami.id
