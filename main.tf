@@ -3,7 +3,8 @@ data "aws_ami" "app_ami" {
 
   filter {
     name   = "name"
-    values = ["bitnami-tomcat-*-x86_64-hvm-ebs-nami"]
+    ## Added a trailing wildcard (*) to catch version suffixes
+    values = ["bitnami-tomcat-*-x86_64-hvm-ebs-nami*"]
   }
 
   filter {
@@ -11,7 +12,7 @@ data "aws_ami" "app_ami" {
     values = ["hvm"]
   }
 
-  owners = ["979382823631"] # Bitnami
+  owners = ["979382823631", "aws-marketplace"] # Bitnami ## Added AWS Marketplace to cover any differences
 }
 
 resource "aws_instance" "web" {
